@@ -1,0 +1,19 @@
+.form__cross{
+    width: 40.7px;
+    position: absolute;
+    right: -37px;
+    top: -37px;
+}
+
+.form__cross:hover{
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 882px){
+    .form__cross{
+        width: 36px;
+        position: absolute;
+        right: 1px;
+        top: -50px;
+    }
+}

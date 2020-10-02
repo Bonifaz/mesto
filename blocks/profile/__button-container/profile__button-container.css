@@ -1,0 +1,14 @@
+.profile__button-container{
+    margin-left: auto;
+}
+
+.profile__button-container:hover{
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 882px){
+    .profile__button-container{
+        width: 280px;
+        margin: 30px auto auto auto;
+    }
+}

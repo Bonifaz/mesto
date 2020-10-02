@@ -1,0 +1,9 @@
+.profile__button-pencil{ 
+    width: 10px;
+}
+
+@media screen and (max-width: 882px){
+    .profile__button-pencil{
+        width: 7.5px;
+    }
+}

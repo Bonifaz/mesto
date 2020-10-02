@@ -1,0 +1,14 @@
+.form__container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: fixed;
+    top: 20%;
+    left: 0;
+}
+
+@media screen and (max-width: 882px){
+    .form__container{
+        top: 13.3%;
+    }
+}

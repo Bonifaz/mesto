@@ -1,0 +1,10 @@
+.profile__info-container{
+    display: flex;
+    flex-direction: row; 
+}
+
+@media screen and (max-width: 882px){
+    .profile__info-container{
+        justify-content: center;
+    }
+}

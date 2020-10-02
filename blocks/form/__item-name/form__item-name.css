@@ -1,0 +1,9 @@
+.form__item-name{
+    margin-bottom: 27px;
+}
+
+@media screen and (max-width: 882px){
+    .form__item-name{
+        margin-bottom: 30px;
+    }
+}
