@@ -1,12 +1,18 @@
 .form__cross{
     width: 40.7px;
     position: absolute;
-    right: -37px;
-    top: -37px;
+    right: -31px;
+    top: -35px;
+    border: none;
+    background: transparent;
 }
 
 .form__cross:hover{
     opacity: 0.6;
+}
+
+.form__cross:focus{
+    outline: none;
 }
 
 @media screen and (max-width: 882px){

@@ -9,11 +9,8 @@
     <body class="body">
         <div class="page">
 
-            <div class="overlay"></div>
-
             <header class="header">
                 <img class="header__logo" src="./images/logo.svg" alt="Логотип">
-                <div class="header__line"></div>
             </header>
 
             <main>
@@ -21,15 +18,15 @@
                     <img class="profile__avatar" src="./images/Avatar.png" alt="Аватар">
                     <div class="profile__info">
                         <div class="profile__info-container">
-                            <p class="profile__info-title">Жак-Ив Кусто</p>
-                                <button class="profile__edit-button">
+                            <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+                                <button class="profile__edit-button" type="button">
                                     <img class="profile__button-pencil" src="./images/pencil.svg" alt="Карандашик">
                                 </button>
                         </div>
                         <p class="profile__info-subtitle">Исследователь океана</p>
                     </div>
                     <div class="profile__button-container">
-                        <button class="profile__button">
+                        <button class="profile__button" type="button">
                             <img class="profile__button-plus" src="./images/plus.svg" alt="Плюсик">
                         </button>
                     </div>
@@ -39,32 +36,56 @@
 
                     <div class="element">
                         <img class="element__image" src="./images/kirill-pershin-karacaevsk-unsplash.png" alt="Карачаевск">
-                        <h2 class="element__title">Карачаевск <img class="element__heart" src="./images/heart.svg" alt="Сердечко"></h2>
+
+                        <div class="element__card-info">
+                            <h2 class="element__title">Карачаевск</h2>
+                            <button type="button" class="element__heart"> <img src="./images/heart.svg" alt="Сердечко" class="element__heart-image"> </button>
+                        </div>
                     </div>
 
                     <div class="element">
                         <img class="element__image" src="./images/kirill-pershin-elbrus-unsplash.png" alt="Эльбрус">
-                        <h2 class="element__title">Гора Эльбрус <img class="element__heart" src="./images/heart.svg " alt="Сердечко"></h2>
+
+                        <div class="element__card-info">
+                            <h2 class="element__title">Гора Эльбрус</h2>
+                            <button type="button" class="element__heart"> <img src="./images/heart.svg" alt="Сердечко" class="element__heart-image"> </button>
+                        </div>
                     </div>
 
                     <div class="element">
                         <img class="element__image" src="./images/kirill-pershin-dombai-unsplash.png" alt="Домбай">
-                        <h2 class="element__title">Домбай <img class="element__heart" src="./images/heart.svg" alt="Сердечко"></h2>
+
+                        <div class="element__card-info">
+                            <h2 class="element__title">Домбай</h2>
+                            <button type="button" class="element__heart"> <img src="./images/heart.svg" alt="Сердечко" class="element__heart-image"> </button>
+                        </div>
                     </div>
 
                     <div class="element">
                         <img class="element__image" src="./images/kirill-pershin-elbrus-unsplash.png" alt="Карачаевск">
-                        <h2 class="element__title">Гора Эльбрус <img class="element__heart" src="./images/heart.svg" alt="Сердечко"></h2>
+
+                        <div class="element__card-info">
+                            <h2 class="element__title">Гора Эльбрус</h2>
+                            <button type="button" class="element__heart"> <img src="./images/heart.svg" alt="Сердечко" class="element__heart-image"> </button>
+                        </div>
                     </div>
 
                     <div class="element">
                         <img class="element__image" src="./images/kirill-pershin-dombai-unsplash.png" alt="Карачаевск">
-                        <h2 class="element__title">Домбай <img class="element__heart" src="./images/heart.svg" alt="Сердечко"></h2>
+
+                        <div class="element__card-info">
+                            <h2 class="element__title">Домбай </h2>
+                            <button type="button" class="element__heart"> <img src="./images/heart.svg" alt="Сердечко" class="element__heart-image"> </button>
+                        </div>
                     </div>
 
                     <div class="element">
                         <img class="element__image" src="./images/kirill-pershin-karacaevsk-unsplash.png" alt="Карачаевск">
-                        <h2 class="element__title">Карачаевск <img class="element__heart" src="./images/heart.svg" alt="Сердечко"></h2>
+
+                        <div class="element__card-info">
+                            <h2 class="element__title">Карачаевск </h2>
+                            <button type="button" class="element__heart"> <img src="./images/heart.svg" alt="Сердечко" class="element__heart-image"> </button>
+                        </div>
                     </div>
                 </section>
             </main>
@@ -73,15 +94,15 @@
                 <p class="footer__title">© 2020 Mesto Russia</p>
             </footer>
 
-            <div class="form__container">
-            <form class="form" onsubmit="return false;">
+            <div class="form-container">
+            <form class="form" name="form">
                 <h2 class="form__title">Редактировать профиль</h2>
                 <fieldset class="form__redactor">
-                    <input type="text" class="form__item form__item-name" >
-                    <input type="text" class="form__item form__item-subtitle" >
+                    <input type="text" class="form__item form__item_name" name="form-name" maxlength="20">
+                    <input type="text" class="form__item form__item-subtitle" name="form-subtitle" maxlength="25">
                 </fieldset>
                 <button class="form__button" type="submit">Сохранить</button>
-                <img class="form__cross" src="./images/CloseIcon.png" alt="Крестик">
+                <button type="button" class="form__cross"><img  src="./images/CloseIcon.svg" alt="Крестик"></button>
             </form>
             </div>
 

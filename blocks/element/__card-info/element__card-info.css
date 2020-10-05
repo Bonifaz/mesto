@@ -1,0 +1,4 @@
+.element__card-info{
+    display: flex;
+    flex-direction: row;
+}

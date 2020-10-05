@@ -1,19 +1,17 @@
 .form{
     width: 430px;
-    height: 330px;
+
     background-color: white;
     border-radius: 10px; 
     position: relative;
-    display: none;
+    margin: auto;
+    margin-bottom: 420px;
 }
 
 @media screen and (max-width: 882px){
     .form{
         width: 282px;
         height: 322px;
+        margin-bottom: 700px;
     }
-}
-
-.form__open{
-    display: block;
 }

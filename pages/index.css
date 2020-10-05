@@ -10,7 +10,6 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
-@import url(../blocks/header/__line/header__line.css);
 
 /*profile*/
 
@@ -33,6 +32,7 @@
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__heart/element__heart.css);
+@import url(../blocks/element/__card-info/element__card-info.css);
 
 /*footer*/
 
@@ -40,19 +40,12 @@
 @import url(../blocks/footer/__title/footer__title.css);
 
 /*form*/
-
+@import url(../blocks/form-container/form-container.css);
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/__container/form__container.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__redactor/form__redactor.css);
 @import url(../blocks/form/__item/form__item.css);
-@import url(../blocks/form/__item-name/form__item-name.css);
+@import url(../blocks/form/__item/_name/form__item_name.css);
 @import url(../blocks/form/__button/form__button.css);
 @import url(../blocks/form/__cross/form__cross.css);
-
-/*overlay*/
-
-@import url(../blocks/overlay/overlay.css);
-@import url(../blocks/overlay/__open/overlay__open.css);
-@import url(../blocks/overlay/__close/overlay__close.css);
-@import url(../blocks/form/__close/form__close.css);
+@import url(../blocks/form-container/_open/form-container_open.css);

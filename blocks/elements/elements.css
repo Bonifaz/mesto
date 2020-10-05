@@ -12,5 +12,6 @@
     .elements{
     width: 88.1%;
     margin: 36px auto auto auto;
+    row-gap: 25px;
     }
 }

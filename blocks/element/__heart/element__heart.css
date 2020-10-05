@@ -1,3 +1,17 @@
 .element__heart{
     width: 20.7px;
+    height: 20.7px;
+    padding: 0;
+    border: none;
+    background-color: white;
+    margin-top: 27px;
+    margin-right: 17px;
+}
+
+.element__heart:hover{
+    opacity: 0.6;
+}
+
+.element__heart:focus{
+    outline: none;
 }
