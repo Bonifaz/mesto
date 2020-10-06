@@ -2,15 +2,17 @@
     width: 68.9%;
     display: flex;
     flex-direction: column;
-    margin: 45px auto auto auto;
-    border-bottom: 1px solid #545454;
+    margin: 0 auto auto auto;
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
     padding-bottom: 40.6px;
+    padding-top: 45px;
 }
 
 @media screen and (max-width: 882px){
     .header{
         width: 100%;
-        margin: 28px auto auto auto;
+        margin: 0 auto auto auto;
+        padding-top: 28px;
         padding-bottom: 31.6px;
     }
 }

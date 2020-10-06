@@ -1,6 +1,5 @@
-.form{
+.pop-up__form{
     width: 430px;
-
     background-color: white;
     border-radius: 10px; 
     position: relative;
@@ -9,9 +8,9 @@
 }
 
 @media screen and (max-width: 882px){
-    .form{
+    .pop-up__form{
         width: 282px;
-        height: 322px;
         margin-bottom: 700px;
+        top: 13.3%;
     }
 }
