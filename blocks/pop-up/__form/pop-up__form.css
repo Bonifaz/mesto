@@ -4,13 +4,10 @@
     border-radius: 10px; 
     position: relative;
     margin: auto;
-    margin-bottom: 420px;
 }
 
 @media screen and (max-width: 882px){
     .pop-up__form{
         width: 282px;
-        margin-bottom: 700px;
-        top: 13.3%;
     }
 }
