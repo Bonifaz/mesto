@@ -4,8 +4,11 @@
     padding: 0;
     border: none;
     background-color: white;
-    margin-top: 27px;
+    
     margin-right: 17px;
+    background-image: url('../../../images/heart.svg');
+    background-repeat: no-repeat;
+    background-size: 20.7px 20.7px;
 }
 
 .element__heart:hover{

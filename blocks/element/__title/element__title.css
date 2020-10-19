@@ -1,10 +1,13 @@
 .element__title{
     margin-left: 21px;
     margin-bottom: 25px;
+    margin-right: 45px;
     font-weight: 900;
     font-size: 24px;
     line-height: 29px;
-    width: 87.2%;
-    display: flex;
+    width: 65%;
     justify-content: space-between;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

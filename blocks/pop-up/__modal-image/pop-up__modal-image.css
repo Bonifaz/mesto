@@ -1,0 +1,14 @@
+.pop-up__modal-image{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.9);
+    max-width: 1280px;
+    margin: auto;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    visibility: hidden;
+}
