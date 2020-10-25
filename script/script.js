@@ -1,12 +1,12 @@
-let buttonProfile = document.querySelector('.profile__edit-button');
-let formContainerEdit = document.querySelector('.pop-up_edit');
-let formName = document.querySelector('.pop-up__item_name');
-let name = document.querySelector('.profile__info-title');
-let formSubtitle = document.querySelector('.pop-up__item_subtitle');
-let subtitle = document.querySelector('.profile__info-subtitle');
-let buttonSave = document.querySelector('.pop-up__button_edit');
-let buttonCross = document.querySelector('.pop-up__cross_edit');
-let form = document.querySelector('.pop-up__form_edit');
+const buttonProfile = document.querySelector('.profile__edit-button');
+const formContainerEdit = document.querySelector('.pop-up_edit');
+const formName = document.querySelector('.pop-up__item_name');
+const name = document.querySelector('.profile__info-title');
+const formSubtitle = document.querySelector('.pop-up__item_subtitle');
+const subtitle = document.querySelector('.profile__info-subtitle');
+const buttonSave = document.querySelector('.pop-up__button_edit');
+const buttonCross = document.querySelector('.pop-up__cross_edit');
+const form = document.querySelector('.pop-up__form_edit');
 
 const cardTemplate = document.querySelector('#template').content;
 const cardImage = document.querySelector('.element__image');
@@ -59,91 +59,74 @@ const initialCards = [
 ]; 
 
 
-function openFormHandler(){
-    formContainerEdit.classList.add("pop-up_open");
-    formName.value =  name.textContent;
-    formSubtitle.value = subtitle.textContent;
-}
+function initFormEdit(){ 
+    formName.value =  name.textContent; 
+    formSubtitle.value = subtitle.textContent; 
+} 
+ 
+function saveFormHandler(evt){ 
+    evt.preventDefault(); 
+    name.textContent = formName.value; 
+    subtitle.textContent = formSubtitle.value; 
+    openAndClosePopUpHandler(formContainerEdit);
+} 
 
-function closeFormHandler(){
-    formContainerEdit.classList.remove("pop-up_open");
-}
-
-function saveFormHandler(evt){
-    evt.preventDefault();
-    name.textContent = formName.value;
-    subtitle.textContent = formSubtitle.value;
-    closeFormHandler();
-}
-
-
-initialCards.forEach(function (item){
-    const templateCopy = cardTemplate.cloneNode(true);
-    const buttonHeart = templateCopy.querySelector('.element__heart');
-    const buttonDeleteCard = templateCopy.querySelector('.element__delete');
-    templateCopy.querySelector('.element__image').src = item.link;
-    templateCopy.querySelector('.element__title').textContent = item.name;
-    
-    buttonDeleteCard.addEventListener('click',() => deleteCardHandler(buttonDeleteCard));
-    buttonHeart.addEventListener('click',() => buttonHeartActiveHandler(buttonHeart));
-
-    const openImageButton = templateCopy.querySelector('.element__image');
-    openImageButton.addEventListener('click',() => openImageHandler(item.link, item.name));
-
-    elements.prepend(templateCopy);
+initialCards.forEach(function (item){ 
+    elements.prepend(initCard(item));
 });
 
-function deleteCardHandler(buttonDeleteCard){
-    const deleteCardClass = buttonDeleteCard.closest('.element');
-    deleteCardClass.remove();
+function initCard(item){
+    const templateCopy = cardTemplate.cloneNode(true); 
+    const buttonHeart = templateCopy.querySelector('.element__heart'); 
+    const buttonDeleteCard = templateCopy.querySelector('.element__delete'); 
+    templateCopy.querySelector('.element__image').src = item.link; 
+    templateCopy.querySelector('.element__title').textContent = item.name;
+    buttonDeleteCard.addEventListener('click',() => deleteCardHandler(buttonDeleteCard)); 
+    buttonHeart.addEventListener('click',() => buttonHeartActiveHandler(buttonHeart)); 
+    const openImageButton = templateCopy.querySelector('.element__image'); 
+    openImageButton.addEventListener('click',() => openImageHandler(item.link, item.name)); 
+    return templateCopy;
 }
+ 
+function deleteCardHandler(buttonDeleteCard){ 
+    const deleteCardClass = buttonDeleteCard.closest('.element'); 
+    deleteCardClass.remove(); 
+} 
+ 
+function buttonHeartActiveHandler(buttonHeart){ 
+    buttonHeart.classList.toggle("element__heart_active"); 
+} 
+ 
+function saveFormAddHandler(evt){ 
+    evt.preventDefault(); 
+    const item = {};
+    item.name = formPlace.value;
+    item.link = formLink.value;
+    elements.prepend(initCard(item));
+    openAndClosePopUpHandler(formContainerAdd);
+} 
+ 
+function openImageHandler(link, name){ 
+    modalImage.src = link; 
+    modalImageTitle.textContent = name; 
+    openAndClosePopUpHandler(modalWindowImage); 
+} 
+ 
 
-function buttonHeartActiveHandler(buttonHeart){
-    buttonHeart.classList.toggle("element__heart_active");
+function openAndClosePopUpHandler(popUp){
+    if(popUp === formContainerEdit){
+        initFormEdit();
+    }
+    popUp.classList.toggle("pop-up_open");
 }
+ 
 
-function openFormAddHandler(){
-    formContainerAdd.classList.add("pop-up_open");
-}
-
-function closeFormAddHandler(){
-    formContainerAdd.classList.remove("pop-up_open");
-}
-
-function saveFormAddHandler(evt){
-    evt.preventDefault();
-    const templateCopy = cardTemplate.cloneNode(true);
-    templateCopy.querySelector('.element__image').src = document.querySelector('.pop-up__item-link').value;
-    templateCopy.querySelector('.element__title').textContent = document.querySelector('.pop-up__item-place').value;
-    const buttonHeart = templateCopy.querySelector('.element__heart');
-    const buttonDeleteCard = templateCopy.querySelector('.element__delete');
-    buttonDeleteCard.addEventListener('click',() => deleteCardHandler(buttonDeleteCard));
-    buttonHeart.addEventListener('click',() => buttonHeartActiveHandler(buttonHeart));
-
-    const openImageButton = templateCopy.querySelector('.element__image');
-    openImageButton.addEventListener('click',() => openImageHandler(formLink.value, formPlace.value));
-    
-    elements.prepend(templateCopy);
-    closeFormAddHandler();
-}
-
-function openImageHandler(link, name){
-    modalImage.src = link;
-    modalImageTitle.textContent = name;
-    modalWindowImage.classList.toggle("pop-up__modal-image_open");
-}
-
-function closeImageHandler(){
-    modalWindowImage.classList.toggle("pop-up__modal-image_open");
-}
-
-
-buttonProfile.addEventListener('click', openFormHandler);
-form.addEventListener('submit', saveFormHandler);
-buttonCross.addEventListener('click', closeFormHandler);
-
-buttonAdd.addEventListener('click', openFormAddHandler);
-buttonCrossAdd.addEventListener('click', closeFormAddHandler);
-formAdd.addEventListener('submit', saveFormAddHandler);
-
-closeImageButton.addEventListener('click',() => closeImageHandler() );
+buttonProfile.addEventListener('click', () => openAndClosePopUpHandler(formContainerEdit)); 
+form.addEventListener('submit', saveFormHandler); 
+buttonCross.addEventListener('click', () => openAndClosePopUpHandler(formContainerEdit)); 
+ 
+buttonAdd.addEventListener('click',() => openAndClosePopUpHandler(formContainerAdd)); 
+buttonCrossAdd.addEventListener('click',() => openAndClosePopUpHandler(formContainerAdd)); 
+formAdd.addEventListener('submit', saveFormAddHandler); 
+ 
+closeImageButton.addEventListener('click',() => openAndClosePopUpHandler(modalWindowImage)); 
