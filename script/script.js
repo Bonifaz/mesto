@@ -62,13 +62,14 @@ const initialCards = [
 function initFormEdit(){ 
     formName.value =  name.textContent; 
     formSubtitle.value = subtitle.textContent; 
+    openOrClosePopUp(formContainerEdit);
 } 
  
 function saveFormHandler(evt){ 
     evt.preventDefault(); 
     name.textContent = formName.value; 
     subtitle.textContent = formSubtitle.value; 
-    openAndClosePopUpHandler(formContainerEdit);
+    openOrClosePopUp(formContainerEdit);
 } 
 
 initialCards.forEach(function (item){ 
@@ -78,12 +79,12 @@ initialCards.forEach(function (item){
 function initCard(item){
     const templateCopy = cardTemplate.cloneNode(true); 
     const buttonHeart = templateCopy.querySelector('.element__heart'); 
-    const buttonDeleteCard = templateCopy.querySelector('.element__delete'); 
-    templateCopy.querySelector('.element__image').src = item.link; 
+    const buttonDeleteCard = templateCopy.querySelector('.element__delete');
+    const openImageButton = templateCopy.querySelector('.element__image'); 
+    openImageButton.src = item.link; 
     templateCopy.querySelector('.element__title').textContent = item.name;
     buttonDeleteCard.addEventListener('click',() => deleteCardHandler(buttonDeleteCard)); 
     buttonHeart.addEventListener('click',() => buttonHeartActiveHandler(buttonHeart)); 
-    const openImageButton = templateCopy.querySelector('.element__image'); 
     openImageButton.addEventListener('click',() => openImageHandler(item.link, item.name)); 
     return templateCopy;
 }
@@ -103,30 +104,27 @@ function saveFormAddHandler(evt){
     item.name = formPlace.value;
     item.link = formLink.value;
     elements.prepend(initCard(item));
-    openAndClosePopUpHandler(formContainerAdd);
+    openOrClosePopUp(formContainerAdd);
 } 
  
 function openImageHandler(link, name){ 
     modalImage.src = link; 
     modalImageTitle.textContent = name; 
-    openAndClosePopUpHandler(modalWindowImage); 
+    openOrClosePopUp(modalWindowImage); 
 } 
  
 
-function openAndClosePopUpHandler(popUp){
-    if(popUp === formContainerEdit){
-        initFormEdit();
-    }
+function openOrClosePopUp(popUp){
     popUp.classList.toggle("pop-up_open");
 }
  
 
-buttonProfile.addEventListener('click', () => openAndClosePopUpHandler(formContainerEdit)); 
+buttonProfile.addEventListener('click', () => initFormEdit());
 form.addEventListener('submit', saveFormHandler); 
-buttonCross.addEventListener('click', () => openAndClosePopUpHandler(formContainerEdit)); 
+buttonCross.addEventListener('click', () => openOrClosePopUp(formContainerEdit)); 
  
-buttonAdd.addEventListener('click',() => openAndClosePopUpHandler(formContainerAdd)); 
-buttonCrossAdd.addEventListener('click',() => openAndClosePopUpHandler(formContainerAdd)); 
+buttonAdd.addEventListener('click',() => openOrClosePopUp(formContainerAdd)); 
+buttonCrossAdd.addEventListener('click',() => openOrClosePopUp(formContainerAdd)); 
 formAdd.addEventListener('submit', saveFormAddHandler); 
- 
-closeImageButton.addEventListener('click',() => openAndClosePopUpHandler(modalWindowImage)); 
+
+closeImageButton.addEventListener('click',() => openOrClosePopUp(modalWindowImage)); 
