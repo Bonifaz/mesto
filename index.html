@@ -43,11 +43,13 @@
             </footer>
 
             <div class="pop-up pop-up_edit">
-            <form class="pop-up__form pop-up__form_edit" name="form">
+            <form class="pop-up__form pop-up__form_edit" name="form" novalidate>
                 <h2 class="pop-up__title">Редактировать профиль</h2> 
                 <fieldset class="pop-up__redactor">
-                    <input type="text" class="pop-up__item pop-up__item_name" name="form-name" maxlength="20">
-                    <input type="text" class="pop-up__item pop-up__item_subtitle" name="form-subtitle" maxlength="25">
+                    <input id="form-name" type="text" class="pop-up__item pop-up__item_name" name="form-name" minlength="2" maxlength="40" required>
+                    <span  class="pop-up__error" id="form-name-error"></span>
+                    <input id="form-subtitle" type="text" class="pop-up__item pop-up__item_subtitle" name="form-subtitle" minlength="2" maxlength="200" required>
+                    <span  class="pop-up__error" id="form-subtitle-error"></span>
                 </fieldset>
                 <button class="pop-up__button pop-up__button_edit" type="submit">Сохранить</button>
                 <button type="button" class="pop-up__cross pop-up__cross_edit"><img  src="./images/closeicon.svg" alt="Крестик"></button>
@@ -59,10 +61,12 @@
                 <form class="pop-up__form pop-up__form_add" name="form">
                     <h2 class="pop-up__title">Новое место</h2> 
                     <fieldset class="pop-up__redactor">
-                        <input type="text" class="pop-up__item pop-up__item-place" name="form-place" maxlength="20" placeholder="Название">
-                        <input type="text" class="pop-up__item pop-up__item-link" name="form-link"  placeholder="Ссылка на картинку">
+                        <input id="form-place" type="text" class="pop-up__item pop-up__item-place" name="form-place" minlength="2" maxlength="20" placeholder="Название" required>
+                        <span   class="pop-up__error" id="form-place-error"></span>
+                        <input id="form-link" type="URL" class="pop-up__item pop-up__item-link" name="form-link"  placeholder="Ссылка на картинку" required>
+                        <span   class="pop-up__error" id="form-link-error"></span>
                     </fieldset>
-                    <button class="pop-up__button pop-up__button_add" type="submit">Создать</button>
+                    <button class="pop-up__button pop-up__button_add pop-up__button_disabled" type="submit" disabled>Создать</button>
                     <button type="button" class="pop-up__cross pop-up__cross_add"><img  src="./images/closeicon.svg" alt="Крестик"></button>
                 </form>
             </div>
@@ -90,5 +94,6 @@
         </template>
         
         <script src="./script/script.js"></script>
+        <script src="./script/validate.js"></script>
     </body>
 </html>

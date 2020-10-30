@@ -8,6 +8,8 @@ const buttonSave = document.querySelector('.pop-up__button_edit');
 const buttonCross = document.querySelector('.pop-up__cross_edit');
 const form = document.querySelector('.pop-up__form_edit');
 
+const AllPopUps = document.querySelectorAll('.pop-up');
+
 const cardTemplate = document.querySelector('#template').content;
 const cardImage = document.querySelector('.element__image');
 
@@ -28,8 +30,6 @@ const closeImageButton = document.querySelector('.pop-up__close-icon');
 const modalImage = document.querySelector('.pop-up__image');
 const modalImageTitle = document.querySelector('.pop-up__bottom-title');
 
-
- 
 const initialCards = [
     {
         name: 'Архыз',
@@ -57,7 +57,6 @@ const initialCards = [
     }
     
 ]; 
-
 
 function initFormEdit(){ 
     formName.value =  name.textContent; 
@@ -113,18 +112,38 @@ function openImageHandler(link, name){
     openOrClosePopUp(modalWindowImage); 
 } 
  
-
 function openOrClosePopUp(popUp){
     popUp.classList.toggle("pop-up_open");
+    if (popUp.classList.contains('pop-up_open')) {
+        document.addEventListener('keydown', checkEsc);
+    } else {
+        document.removeEventListener('keydown', checkEsc);
+    }
+}
+
+function checkEsc(evt){
+    const searchOpenPopUp = document.querySelector('.pop-up_open');
+    if(evt.which === 27){
+        openOrClosePopUp(searchOpenPopUp);
+    } else {
+        return 0;
+    } 
 }
  
-
 buttonProfile.addEventListener('click', () => initFormEdit());
 form.addEventListener('submit', saveFormHandler); 
 buttonCross.addEventListener('click', () => openOrClosePopUp(formContainerEdit)); 
- 
 buttonAdd.addEventListener('click',() => openOrClosePopUp(formContainerAdd)); 
 buttonCrossAdd.addEventListener('click',() => openOrClosePopUp(formContainerAdd)); 
 formAdd.addEventListener('submit', saveFormAddHandler); 
-
 closeImageButton.addEventListener('click',() => openOrClosePopUp(modalWindowImage)); 
+
+AllPopUps.forEach(popUp => {
+    popUp.addEventListener('click', function (evt){
+        if(evt.target.classList.contains('pop-up')){
+            openOrClosePopUp(popUp);
+        } else {
+            return 0;
+        }
+    })
+})

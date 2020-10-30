@@ -57,4 +57,27 @@
 @import url(../blocks/pop-up/__image/pop-up__image.css);
 @import url(../blocks/pop-up/__bottom-title/pop-up__bottom-title.css);
 
+.pop-up__input_type_error{
+    border-bottom: 1px solid red;
+}
+
+.pop-up__error{
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: red;
+    position: relative;
+    top: -20px;
+}
+
+.popup__error_visible{
+    display: block;
+}
+
+.pop-up__button_disabled{
+    background-color: white;
+    color: #c4c4c4;
+    border: 1px solid #c4c4c4;
+    border-radius: 2px;
+}
 
