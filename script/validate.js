@@ -7,55 +7,54 @@ const objects = {
     errorClass: 'pop-up__error_visible'
 }
 
-enableValidation(objects);
-
 function enableValidation({formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}){
     const formsObjects = Array.from(document.querySelectorAll(formSelector));
     formsObjects.forEach(form => {
         form.addEventListener('submit', function(evt){
             evt.preventDefault();
         });
-        inputs(form, objects);
+        setAddEventListeners(inputs(form, inputSelector), form);
     }); 
 }
 
-function inputs(form, objects){
-    const inputsObjects = Array.from(form.querySelectorAll(objects.inputSelector));
+function inputs(form, inputSelector){
+    const inputsObjects = Array.from(form.querySelectorAll(inputSelector));
+    return inputsObjects;
+}
 
-    const showInputError = (input, validationMessage) => {
-        input.classList.add('pop-up__input_type_error');
-        const inputObjectsError = form.querySelector(`#${input.id}-error`);
-        inputObjectsError.textContent = input.validationMessage;
-        inputObjectsError.classList.add('pop-up__error_visible');
-    }
-
-    const hideInputError = (input) => {
-        input.classList.remove('pop-up__input_type_error');
-        const inputObjectsError = form.querySelector(`#${input.id}-error`);
-        inputObjectsError.classList.remove('pop-up__error_visible');
-        inputObjectsError.textContent = '';
-    }
-
+function setAddEventListeners(inputsObjects, form){
     inputsObjects.forEach(input => {
         input.addEventListener('input', function (evt){
             toggleClassSubmitButton(allFormsValid(inputsObjects), form);
             if (input.validity.valid) {
-                hideInputError(input);
+                hideInputError(input, form);
             } else {
-                showInputError(input, input.validationMessage);
+                showInputError(input, form);
             }
-
         });
-        
     });
+}
 
-    function allFormsValid (inputsObjects) {
-        const formsValid = inputsObjects.some((input) => {
-            return !input.validity.valid;
-            })
-        return !formsValid;
-    }
-    
+function hideInputError(input, form){
+    input.classList.remove('pop-up__input_type_error');
+    const inputObjectsError = form.querySelector(`#${input.id}-error`);
+    inputObjectsError.classList.remove('pop-up__error_visible');
+    inputObjectsError.textContent = '';
+}  
+
+
+function showInputError(input, form){
+    input.classList.add('pop-up__input_type_error');
+    const inputObjectsError = form.querySelector(`#${input.id}-error`);
+    inputObjectsError.textContent = input.validationMessage;
+    inputObjectsError.classList.add('pop-up__error_visible');
+}  
+
+function allFormsValid (inputsObjects) {
+    const formsValid = inputsObjects.some((input) => {
+        return !input.validity.valid;
+        })
+    return !formsValid;
 }
 
 function toggleClassSubmitButton(isValidForm, form){
@@ -69,4 +68,6 @@ function toggleClassSubmitButton(isValidForm, form){
         buttonValid.setAttribute('disabled', 'disabled');
     }
 }
+
+enableValidation(objects);
 

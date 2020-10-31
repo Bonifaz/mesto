@@ -58,21 +58,15 @@ const initialCards = [
     
 ]; 
 
-function initFormEdit(){ 
-    formName.value =  name.textContent; 
-    formSubtitle.value = subtitle.textContent; 
-    openOrClosePopUp(formContainerEdit);
-} 
- 
 function saveFormHandler(evt){ 
     evt.preventDefault(); 
     name.textContent = formName.value; 
     subtitle.textContent = formSubtitle.value; 
-    openOrClosePopUp(formContainerEdit);
+    closePopUp(formContainerEdit);
 } 
 
 initialCards.forEach(function (item){ 
-    elements.prepend(initCard(item));
+    addCard(item);
 });
 
 function initCard(item){
@@ -96,52 +90,63 @@ function deleteCardHandler(buttonDeleteCard){
 function buttonHeartActiveHandler(buttonHeart){ 
     buttonHeart.classList.toggle("element__heart_active"); 
 } 
+
+function addCard(item){
+    elements.prepend(initCard(item));
+}
  
 function saveFormAddHandler(evt){ 
     evt.preventDefault(); 
     const item = {};
     item.name = formPlace.value;
     item.link = formLink.value;
-    elements.prepend(initCard(item));
-    openOrClosePopUp(formContainerAdd);
+    addCard(item);
+    closePopUp(formContainerAdd);
 } 
  
 function openImageHandler(link, name){ 
     modalImage.src = link; 
     modalImageTitle.textContent = name; 
-    openOrClosePopUp(modalWindowImage); 
+    openPopUp(modalWindowImage); 
 } 
- 
-function openOrClosePopUp(popUp){
-    popUp.classList.toggle("pop-up_open");
-    if (popUp.classList.contains('pop-up_open')) {
-        document.addEventListener('keydown', checkEsc);
-    } else {
-        document.removeEventListener('keydown', checkEsc);
-    }
+
+function openPopUp(popUp){
+    popUp.classList.add("pop-up_open");
+    document.addEventListener('keydown', checkEsc);
+}
+
+function closePopUp(popUp){
+    popUp.classList.remove("pop-up_open");
+    document.removeEventListener('keydown', checkEsc);
 }
 
 function checkEsc(evt){
     const searchOpenPopUp = document.querySelector('.pop-up_open');
-    if(evt.which === 27){
-        openOrClosePopUp(searchOpenPopUp);
+    const escapeButton = 27;
+    if(evt.which === escapeButton){
+        closePopUp(searchOpenPopUp);
     } else {
         return 0;
     } 
 }
  
-buttonProfile.addEventListener('click', () => initFormEdit());
+buttonProfile.addEventListener('click', () => {
+    formName.value =  name.textContent; 
+    formSubtitle.value = subtitle.textContent; 
+    openPopUp(formContainerEdit);
+});
+
 form.addEventListener('submit', saveFormHandler); 
-buttonCross.addEventListener('click', () => openOrClosePopUp(formContainerEdit)); 
-buttonAdd.addEventListener('click',() => openOrClosePopUp(formContainerAdd)); 
-buttonCrossAdd.addEventListener('click',() => openOrClosePopUp(formContainerAdd)); 
+buttonCross.addEventListener('click', () => closePopUp(formContainerEdit)); 
+buttonAdd.addEventListener('click',() => openPopUp(formContainerAdd)); 
+buttonCrossAdd.addEventListener('click',() => closePopUp(formContainerAdd)); 
 formAdd.addEventListener('submit', saveFormAddHandler); 
-closeImageButton.addEventListener('click',() => openOrClosePopUp(modalWindowImage)); 
+closeImageButton.addEventListener('click',() => closePopUp(modalWindowImage)); 
 
 AllPopUps.forEach(popUp => {
     popUp.addEventListener('click', function (evt){
         if(evt.target.classList.contains('pop-up')){
-            openOrClosePopUp(popUp);
+            closePopUp(popUp);
         } else {
             return 0;
         }
