@@ -3,9 +3,19 @@
     border: 0;
     position: absolute;
     top: 18px;
-    right: 15px;
+    right: 11px;
     width: 18px;
+    width: 30px;
+    padding: 0;
 }
 .element__delete:focus{
     outline: none;
+}
+
+.element__delete:hover{
+    cursor: pointer;
+}
+
+.element__delete-image{
+    width: 18px;
 }

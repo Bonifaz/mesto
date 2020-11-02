@@ -1,0 +1,8 @@
+.pop-up__error{
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: red;
+    position: relative;
+    top: -20px;
+}

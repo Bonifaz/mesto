@@ -6,6 +6,10 @@
     padding: 0;
 }
 
+.profile__button:hover{
+    cursor: pointer;
+}
+
 @media screen and (max-width: 882px){
     .profile__button{
         width: 100%;

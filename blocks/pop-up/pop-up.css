@@ -1,6 +1,9 @@
 .pop-up{
     width: 100%;
     max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
     top: 0;
     bottom: 0;
     position: fixed;

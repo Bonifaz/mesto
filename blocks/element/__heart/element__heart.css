@@ -4,15 +4,15 @@
     padding: 0;
     border: none;
     background-color: white;
-    
     margin-right: 17px;
     background-image: url('../../../images/heart.svg');
     background-repeat: no-repeat;
-    background-size: 20.7px 20.7px;
+    background-size: 20px 20px;
 }
 
 .element__heart:hover{
     opacity: 0.6;
+    cursor: pointer;
 }
 
 .element__heart:focus{
