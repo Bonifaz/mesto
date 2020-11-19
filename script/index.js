@@ -1,3 +1,6 @@
+import {FormValidator} from './FormValidator.js';
+import {Card} from './Card.js';
+
 const buttonProfile = document.querySelector('.profile__edit-button');
 const formContainerEdit = document.querySelector('.pop-up_edit');
 const formName = document.querySelector('.pop-up__item_name');
@@ -11,6 +14,7 @@ const form = document.querySelector('.pop-up__form_edit');
 const AllPopUps = document.querySelectorAll('.pop-up');
 
 const cardTemplate = document.querySelector('#template').content;
+const templateSelector = document.querySelector('#template');
 const cardImage = document.querySelector('.element__image');
 
 const elements = document.querySelector('.elements');
@@ -58,6 +62,31 @@ const initialCards = [
     
 ]; 
 
+    const objects = {
+    formSelector: '.pop-up__form',
+    inputSelector: '.pop-up__item',
+    submitButtonSelector: '.pop-up__button',
+    inactiveButtonClass: 'pop-up__button_disabled',
+    inputErrorClass: 'pop-up__input_type_error',
+    errorClass: 'pop-up__error_visible'
+}
+
+const callFormValidator = new FormValidator(objects, form);
+callFormValidator.enableValidation();
+
+const callFormValidatorAdd = new FormValidator(objects, formAdd);
+callFormValidatorAdd.enableValidation();
+
+function addCard(){
+    elements.prepend(initCard());
+}
+
+function openImageHandler(link, name){ 
+    modalImage.src = link; 
+    modalImageTitle.textContent = name; 
+    openPopUp(modalWindowImage); 
+} 
+
 function saveFormHandler(evt){ 
     evt.preventDefault(); 
     name.textContent = formName.value; 
@@ -66,48 +95,18 @@ function saveFormHandler(evt){
 } 
 
 initialCards.forEach(function (item){ 
-    addCard(item);
+    const addCardDefault = new Card(item, templateSelector, openPopUp, openImageHandler);
+    elements.prepend(addCardDefault.initCard());
 });
-
-function initCard(item){
-    const templateCopy = cardTemplate.cloneNode(true); 
-    const buttonHeart = templateCopy.querySelector('.element__heart'); 
-    const buttonDeleteCard = templateCopy.querySelector('.element__delete');
-    const openImageButton = templateCopy.querySelector('.element__image'); 
-    openImageButton.src = item.link; 
-    templateCopy.querySelector('.element__title').textContent = item.name;
-    buttonDeleteCard.addEventListener('click',() => deleteCardHandler(buttonDeleteCard)); 
-    buttonHeart.addEventListener('click',() => buttonHeartActiveHandler(buttonHeart)); 
-    openImageButton.addEventListener('click',() => openImageHandler(item.link, item.name)); 
-    return templateCopy;
-}
- 
-function deleteCardHandler(buttonDeleteCard){ 
-    const deleteCardClass = buttonDeleteCard.closest('.element'); 
-    deleteCardClass.remove(); 
-} 
- 
-function buttonHeartActiveHandler(buttonHeart){ 
-    buttonHeart.classList.toggle("element__heart_active"); 
-} 
-
-function addCard(item){
-    elements.prepend(initCard(item));
-}
  
 function saveFormAddHandler(evt){ 
     evt.preventDefault(); 
     const item = {};
     item.name = formPlace.value;
     item.link = formLink.value;
-    addCard(item);
+    const addCardDefault = new Card(item, templateSelector, openPopUp, openImageHandler);
+    elements.prepend(addCardDefault.initCard());
     closePopUp(formContainerAdd);
-} 
- 
-function openImageHandler(link, name){ 
-    modalImage.src = link; 
-    modalImageTitle.textContent = name; 
-    openPopUp(modalWindowImage); 
 } 
 
 function openPopUp(popUp){
