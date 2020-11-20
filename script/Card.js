@@ -6,8 +6,12 @@ export class Card {
         this.openImageHandler = openImageHandler;
     }
 
+    _getTemplate(){
+        return this._templateSelector.content.cloneNode(true); 
+    }
+
     initCard(){
-        const templateCopy = this._templateSelector.content.cloneNode(true); 
+        const templateCopy = this._getTemplate();
         const buttonHeart = templateCopy.querySelector('.element__heart'); 
         const buttonDeleteCard = templateCopy.querySelector('.element__delete');
         const openImageButton = templateCopy.querySelector('.element__image'); 

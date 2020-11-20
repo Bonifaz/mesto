@@ -11,7 +11,7 @@ const buttonSave = document.querySelector('.pop-up__button_edit');
 const buttonCross = document.querySelector('.pop-up__cross_edit');
 const form = document.querySelector('.pop-up__form_edit');
 
-const AllPopUps = document.querySelectorAll('.pop-up');
+const allPopUps = document.querySelectorAll('.pop-up');
 
 const cardTemplate = document.querySelector('#template').content;
 const templateSelector = document.querySelector('#template');
@@ -94,9 +94,13 @@ function saveFormHandler(evt){
     closePopUp(formContainerEdit);
 } 
 
-initialCards.forEach(function (item){ 
+function renderCard(item, templateSelector, openPopUp, openImageHandler){
     const addCardDefault = new Card(item, templateSelector, openPopUp, openImageHandler);
-    elements.prepend(addCardDefault.initCard());
+    return addCardDefault;
+}
+
+initialCards.forEach(function (item){ 
+    elements.prepend(renderCard(item, templateSelector, openPopUp, openImageHandler).initCard());
 });
  
 function saveFormAddHandler(evt){ 
@@ -104,8 +108,7 @@ function saveFormAddHandler(evt){
     const item = {};
     item.name = formPlace.value;
     item.link = formLink.value;
-    const addCardDefault = new Card(item, templateSelector, openPopUp, openImageHandler);
-    elements.prepend(addCardDefault.initCard());
+    elements.prepend(renderCard(item, templateSelector, openPopUp, openImageHandler).initCard());
     closePopUp(formContainerAdd);
 } 
 
@@ -124,9 +127,7 @@ function checkEsc(evt){
     const escapeButton = 27;
     if(evt.which === escapeButton){
         closePopUp(searchOpenPopUp);
-    } else {
-        return 0;
-    } 
+    }  
 }
  
 buttonProfile.addEventListener('click', () => {
@@ -142,12 +143,10 @@ buttonCrossAdd.addEventListener('click',() => closePopUp(formContainerAdd));
 formAdd.addEventListener('submit', saveFormAddHandler); 
 closeImageButton.addEventListener('click',() => closePopUp(modalWindowImage)); 
 
-AllPopUps.forEach(popUp => {
+allPopUps.forEach(popUp => {
     popUp.addEventListener('click', function (evt){
         if(evt.target.classList.contains('pop-up')){
             closePopUp(popUp);
-        } else {
-            return 0;
         }
     })
 })

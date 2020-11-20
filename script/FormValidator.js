@@ -18,11 +18,11 @@
         return inputsObjects;
     }
 
-    _allFormsValid(inputsObjects) {
-        const formsValid = inputsObjects.some((input) => {
+    _allInputsValid(inputsObjects) {
+        const hasInvalidInputs = inputsObjects.some((input) => {
             return !input.validity.valid;
             });
-        return !formsValid;
+        return !hasInvalidInputs;
     }
 
     _setAddEventListeners(inputsObjects){
@@ -32,7 +32,7 @@
     }
 
     _validForms(inputsObjects, input){
-        const retValue = this._allFormsValid(inputsObjects);
+        const retValue = this._allInputsValid(inputsObjects);
                 this._toggleClassSubmitButton(retValue);
                 if (input.validity.valid) {
                     this._hideInputError(input);
