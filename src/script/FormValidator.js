@@ -1,6 +1,4 @@
-
-
- export class FormValidator {
+export class FormValidator {
     constructor(objects, form){
         this._objects = objects;
         this._form = form;
