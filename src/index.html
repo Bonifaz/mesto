@@ -9,24 +9,24 @@
         <div class="page">
 
             <header class="header">
-                <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+                <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
             </header>
 
             <main>
                 <section class="profile">
-                    <img class="profile__avatar" src="./images/avatar.png" alt="Аватар">
+                    <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Аватар">
                     <div class="profile__info">
                         <div class="profile__info-container">
                             <h1 class="profile__info-title">Жак-Ив Кусто</h1>
                                 <button class="profile__edit-button" type="button">
-                                    <img class="profile__button-pencil" src="./images/pencil.svg" alt="Карандашик">
+                                    <img class="profile__button-pencil" src="<%=require('./images/pencil.svg')%>" alt="Карандашик">
                                 </button>
                         </div>
                         <p class="profile__info-subtitle">Исследователь океана</p>
                     </div>
                     <div class="profile__button-container">
                         <button class="profile__button" type="button">
-                            <img class="profile__button-plus" src="./images/plus.svg" alt="Плюсик">
+                            <img class="profile__button-plus" src="<%=require('./images/plus.svg')%>" alt="Плюсик">
                         </button>
                     </div>
                 </section>
@@ -43,7 +43,7 @@
 
             <div class="pop-up pop-up_edit">
             <form class="pop-up__form pop-up__form_edit" name="form" novalidate>
-                <h2 class="pop-up__title">Редактировать профиль</h2> 
+                <h2 class="pop-up__title">Редактировать профиль</h2>
                 <fieldset class="pop-up__redactor">
                     <input id="form-name" type="text" class="pop-up__item pop-up__item_name" name="form-name" minlength="2" maxlength="40" required>
                     <span  class="pop-up__error" id="form-name-error"></span>
@@ -51,14 +51,14 @@
                     <span  class="pop-up__error" id="form-subtitle-error"></span>
                 </fieldset>
                 <button class="pop-up__button pop-up__button_edit" type="submit">Сохранить</button>
-                <button type="button" class="pop-up__cross pop-up__cross_edit"><img  src="./images/closeicon.svg" alt="Крестик"></button>
+                <button type="button" class="pop-up__cross pop-up__cross_edit"><img  src="<%=require('./images/closeicon.svg')%>" alt="Крестик"></button>
             </form>
             </div>
 
 
             <div class="pop-up pop-up_add">
                 <form class="pop-up__form pop-up__form_add" name="form">
-                    <h2 class="pop-up__title">Новое место</h2> 
+                    <h2 class="pop-up__title">Новое место</h2>
                     <fieldset class="pop-up__redactor">
                         <input id="form-place" type="text" class="pop-up__item pop-up__item-place" name="form-place" minlength="2" maxlength="20" placeholder="Название" required>
                         <span   class="pop-up__error" id="form-place-error"></span>
@@ -66,13 +66,13 @@
                         <span   class="pop-up__error" id="form-link-error"></span>
                     </fieldset>
                     <button class="pop-up__button pop-up__button_add pop-up__button_disabled" type="submit" disabled>Создать</button>
-                    <button type="button" class="pop-up__cross pop-up__cross_add"><img  src="./images/closeicon.svg" alt="Крестик"></button>
+                    <button type="button" class="pop-up__cross pop-up__cross_add"><img  src="<%=require('./images/closeicon.svg')%>" alt="Крестик"></button>
                 </form>
             </div>
 
             <div class="pop-up pop-up__modal-image">
                 <div class="pop-up__image-container">
-                    <button class="pop-up__close-icon pop-up__cross" type="button"><img src="./images/closeicon.svg" alt="Крестик"></button> 
+                    <button class="pop-up__close-icon pop-up__cross" type="button"><img src="<%=require('./images/closeicon.svg')%>" alt="Крестик"></button>
                     <img class="pop-up__image" alt="Картинка" src='#'>
                     <p class="pop-up__bottom-title"></p>
                 </div>
@@ -83,8 +83,8 @@
         <template id="template">
             <div class="element">
             <img class="element__image" src="link" alt="Картинка">
-            <button class="element__delete" type="button"><img  class="element__delete-image" src="./images/delete.svg"></button>
-            
+            <button class="element__delete" type="button"><img  class="element__delete-image" src="<%=require('./images/delete.svg')%>"></button>
+
               <div class="element__card-info">
                   <h2 class="element__title"></h2>
                   <button class="element__heart" type="button"></button>
