@@ -1,4 +1,6 @@
+
 import {openImageHandler} from '../pages/index.js';
+
 
 export class Card {
     constructor(item, templateSelector){
