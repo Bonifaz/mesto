@@ -1,8 +1,9 @@
+import {openImageHandler} from '../pages/index.js';
+
 export class Card {
-    constructor(item, templateSelector, openPopUp, openImageHandler){
+    constructor(item, templateSelector){
         this._item = item;
         this._templateSelector = templateSelector;
-        this.openPopUp = openPopUp;
         this.openImageHandler = openImageHandler;
     }
 
