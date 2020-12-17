@@ -1,5 +1,3 @@
-
-
 export class UserInfo{
     constructor(userInfoSelectors){
         this.userInfoSelectors = userInfoSelectors;

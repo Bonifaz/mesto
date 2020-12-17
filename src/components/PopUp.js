@@ -20,5 +20,10 @@ export class PopUp{
     }
     setEventListeners(){
         this.popUpSelector.querySelector('.pop-up__cross').addEventListener('click', () => this.close());
+        this.popUpSelector.addEventListener('click', (evt) => {
+            if(evt.target === this.popUpSelector) {
+                this.close();
+            }
+        });
     }
 }

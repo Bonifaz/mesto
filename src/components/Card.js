@@ -1,12 +1,13 @@
-
-import {openImageHandler} from '../pages/index.js';
-
-
 export class Card {
-    constructor(item, templateSelector){
+    constructor(item, templateSelector, openImageHandler){
         this._item = item;
         this._templateSelector = templateSelector;
         this.openImageHandler = openImageHandler;
+        this._templateCopy = this._getTemplate();
+        this._imageCard = this._templateCopy.querySelector('.element__image');
+        this._titleCard = this._templateCopy.querySelector('.element__title');
+        this._buttonDeleteCard = this._templateCopy.querySelector('.element__delete');
+        this._buttonHeart = this._templateCopy.querySelector('.element__heart');
     }
 
     _getTemplate(){
@@ -14,16 +15,16 @@ export class Card {
     }
 
     initCard(){
-        const templateCopy = this._getTemplate();
-        const buttonHeart = templateCopy.querySelector('.element__heart'); 
-        const buttonDeleteCard = templateCopy.querySelector('.element__delete');
-        const openImageButton = templateCopy.querySelector('.element__image'); 
-        openImageButton.src = this._item.link; 
-        templateCopy.querySelector('.element__title').textContent = this._item.name;
-        buttonDeleteCard.addEventListener('click',() => this.deleteCardHandler(buttonDeleteCard)); 
-        buttonHeart.addEventListener('click',() => this.buttonHeartActiveHandler(buttonHeart)); 
-        openImageButton.addEventListener('click',() => this.openImageHandler(this._item.link, this._item.name));
-        return templateCopy;
+        this._imageCard.src = this._item.link; 
+        this._titleCard.textContent = this._item.name;
+        this._setEventListeners();
+        return this._templateCopy;
+    }
+
+    _setEventListeners(){
+        this._buttonDeleteCard.addEventListener('click',() => this.deleteCardHandler(this._buttonDeleteCard)); 
+        this._buttonHeart.addEventListener('click',() => this.buttonHeartActiveHandler(this._buttonHeart)); 
+        this._imageCard.addEventListener('click',() => this.openImageHandler(this._item.link, this._item.name));
     }
 
     deleteCardHandler(buttonDeleteCard){ 

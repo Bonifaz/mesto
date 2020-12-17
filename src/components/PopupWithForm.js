@@ -1,9 +1,10 @@
 import {PopUp} from './PopUp.js';
-import {saveFormHandler, saveFormAddHandler} from '../pages/index.js'
+
 export class PopupWithForm extends PopUp{
-    constructor(popUpSelector, submitSelector){
+    constructor(popUpSelector, popupSubmitHandler){
         super(popUpSelector);
-        this.submitSelector = submitSelector;
+        this.popupSubmitHandler = popupSubmitHandler;
+        
     }
     _getInputValues(){
         const inputList = Array.from(this.popUpSelector.querySelectorAll('.pop-up__item'));
@@ -15,18 +16,10 @@ export class PopupWithForm extends PopUp{
     }
     setEventListeners(){
         super.setEventListeners();
-        if(this.popUpSelector.classList.contains('pop-up_edit')){
-            this.popUpSelector.querySelector('.pop-up__form').addEventListener('submit', (evt) => saveFormHandler(evt, this._getInputValues()));
-        }
-        if(this.popUpSelector.classList.contains('pop-up_add')){
-            this.popUpSelector.querySelector('.pop-up__form').addEventListener('submit',  (evt) => saveFormAddHandler(evt, this._getInputValues()));
-        }
+        this.popUpSelector.querySelector('.pop-up__form').addEventListener('submit',  (evt) => this.popupSubmitHandler(evt, this._getInputValues()));
     }
     close(){
-        const resetinput = Array.from(this.popUpSelector.querySelectorAll('.pop-up__item'));
-        resetinput.forEach(item =>{
-            item.value = '';
-        });
+        this.popUpSelector.querySelector('form').reset();
         super.close();
     }
 }
