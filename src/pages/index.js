@@ -39,8 +39,7 @@ const userInfoSelectors = {
 const items = new Section({
     items: initialCards,
     renderer: (item, containForCards) => {
-        const sectionCard = new Card(item, templateSelector, openImageHandler);
-        const card = sectionCard.initCard();
+        const card = createCard(item, templateSelector)
         containForCards.append(card);
     }, 
 },elements);
@@ -67,14 +66,14 @@ function saveFormHandler(evt, infoUser){
     popupWithFormEdit.close();
 }
 
-function renderCard(item, templateSelector){
+function createCard(item, templateSelector){
     const addCardDefault = new Card(item, templateSelector, openImageHandler);
     popupAddButtonDisabled();
     return addCardDefault.initCard();
 }
 
 function popupAddButtonDisabled(){
-    popupAddSubmitButton.classList.add('pop-up__button_disabled');
+    popupAddSubmitButton.classList.add(validationSettings.inactiveButtonClass);
     popupAddSubmitButton.setAttribute('disabled', 'disabled');
 }
 
@@ -83,7 +82,7 @@ function saveFormAddHandler(evt, infoPic){
     const item = {}; 
     item.name = infoPic[0];
     item.link = infoPic[1];
-    const card = renderCard(item, templateSelector);
+    const card = createCard(item, templateSelector);
     items.addItem(card, elements);
     popupWithFormAdd.close()
 }
@@ -98,7 +97,7 @@ buttonProfile.addEventListener('click', () => {
     porfileProf.value = infoUser.prof;
     formValidatorEdit._hideInputError(profileName);
     formValidatorEdit._hideInputError(porfileProf);
-    popupEditSubmitButton.classList.remove('pop-up__button_disabled');
+    popupEditSubmitButton.classList.remove(validationSettings.inactiveButtonClass);
     popupEditSubmitButton.removeAttribute('disabled', 'disabled');
     popupWithFormEdit.open();
 

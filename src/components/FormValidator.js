@@ -1,3 +1,4 @@
+import {validationSettings} from '../utils/constants.js';
 export class FormValidator {
     constructor(validationSettings, form){
         this._validationSettings = validationSettings;
@@ -59,10 +60,10 @@ export class FormValidator {
     _toggleClassSubmitButton(isValidForm){
         const buttonValid = this._form.querySelector(this._validationSettings.submitButtonSelector);
         if(isValidForm){
-            buttonValid.classList.remove('pop-up__button_disabled');
+            buttonValid.classList.remove(validationSettings.inactiveButtonClass);
             buttonValid.removeAttribute('disabled', 'disabled');
         } else {
-            buttonValid.classList.add('pop-up__button_disabled');
+            buttonValid.classList.add(validationSettings.inactiveButtonClass);
             buttonValid.setAttribute('disabled', 'disabled');
         }
     }
