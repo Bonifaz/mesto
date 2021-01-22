@@ -1,0 +1,16 @@
+.profile__avatar-elements{
+    width: 120px;
+    height: 120px;
+    position: relative;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 882px){
+    .profile__avatar-elements{
+        margin-bottom: 14px;
+    }
+}
+
+.profile__avatar-elements:hover .profile__button-redact{
+    visibility: visible;   
+}
