@@ -59,7 +59,7 @@
 @import url(../blocks/pop-up/__button/_disabled/pop-up__button_disabled.css);
 
 @import url(../blocks/pop-up/__image-container/pop-up__image-container.css);
-@import url(../blocks/pop-up/__modal-image/pop-up__modal-image.css);
+@import url(../blocks/pop-up/_modal-image/pop-up_modal-image.css);
 @import url(../blocks/pop-up/__close-icon/pop-up__close-icon.css);
 @import url(../blocks/pop-up/__image/pop-up__image.css);
 @import url(../blocks/pop-up/__bottom-title/pop-up__bottom-title.css);
