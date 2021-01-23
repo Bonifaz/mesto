@@ -1,12 +1,15 @@
-import './../pages/index.css';
+import '../pages/index.css';
 import {FormValidator} from '../components/FormValidator.js';
 import {Card} from '../components/Card.js';
 import {Section} from '../components/Section.js';
-import {PopUp} from '../components/PopUp.js';
+import {Popup} from '../components/Popup.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
-import {initialCards, validationSettings} from '../utils/constants.js';
+import {validationSettings} from '../utils/constants.js';
+
+
+
 import {Api} from '../components/Api.js'
 
 const buttonProfile = document.querySelector('.profile__edit-button');
@@ -25,7 +28,8 @@ const formContainerAdd = document.querySelector('.pop-up_add');
 const buttonAdd = document.querySelector('.profile__button');
 const popupAvatarSubmitButton = document.querySelector('.pop-up__button_avatar');
 const formAdd = document.querySelector('.pop-up__form_add');
-const modalWindowImage = document.querySelector('.pop-up__modal-image');
+const modalWindowImage = document.querySelector('.pop-up_modal-image');
+
 const profileInfoTitleSelector = '.profile__info-title';
 const profileInfoSubtitleSelector = '.profile__info-subtitle';
 const profileInfoAvatar = '.profile__avatar';
@@ -42,12 +46,12 @@ const buttonAvatarEdit = document.querySelector('.profile__avatar-elements');
 const token = 'b38e7e87-f50b-4971-8f98-b921d67a88e2';
 const addressCard = 'https://mesto.nomoreparties.co/v1/cohort-19/cards';
 const addressInfo = 'https://mesto.nomoreparties.co/v1/cohort-19/users/me';
+
 const userInfoSelectors = {
     name: profileInfoTitleSelector,
     prof: profileInfoSubtitleSelector,
     avatar: profileInfoAvatar
 }
-
 const contApi = new Api(token);
 const formValidatorEdit = new FormValidator(validationSettings, form);
 formValidatorEdit.enableValidation();
@@ -55,13 +59,16 @@ const formValidatorAdd = new FormValidator(validationSettings, formAdd);
 formValidatorAdd.enableValidation();
 const formValidatorAvatar = new FormValidator(validationSettings, formAvatar);
 formValidatorAvatar.enableValidation();
-const popupDelete = new PopUp(popupDeleteContainer);
+const popupDelete = new Popup(popupDeleteContainer);
 popupDelete.setEventListeners();
 const popupWithFormEdit = new PopupWithForm(formContainerEdit, saveFormHandler);
+popupWithFormEdit.setEventListeners();
 const popupWithFormAdd = new PopupWithForm(formContainerAdd, saveFormAddHandler);
+popupWithFormAdd.setEventListeners();
 const popupWithImage = new PopupWithImage(modalWindowImage);
+popupWithImage.setEventListeners();
 const PopupWithFormAvatar = new PopupWithForm(formContainerAvatar, saveFormAvatar);
-
+PopupWithFormAvatar.setEventListeners();
 const userInfo = new UserInfo(userInfoSelectors);
 
 contApi.getCard(addressCard)
@@ -78,7 +85,7 @@ contApi.getCard(addressCard)
                 containForCards.append(card);
             }, 
         },elements);
-        items.rendItems();
+        items.renderItems();
     });
 
 contApi.getInfo(addressInfo)
@@ -139,10 +146,7 @@ function deleteCard(id){
    popupDelete.close();
 }
 
-popupWithImage.setEventListeners();
-popupWithFormAdd.setEventListeners();
-popupWithFormEdit.setEventListeners();
-PopupWithFormAvatar.setEventListeners();
+
  
 buttonProfile.addEventListener('click', () => {
     const infoUser = userInfo.getUserInfo();

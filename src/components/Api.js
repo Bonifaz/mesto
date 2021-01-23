@@ -10,7 +10,7 @@ export class Api{
         }})
         .then(res => {
             if(res.ok){
-                res.json()
+                return res.json()
             }
             return Promise.reject(`Ошибка: ${res.status}`);
         }) 
@@ -29,7 +29,7 @@ export class Api{
             }})
             .then(res => {
                 if(res.ok){
-                    res.json()
+                    return res.json()
                 }
                 return Promise.reject(`Ошибка: ${res.status}`);
             })

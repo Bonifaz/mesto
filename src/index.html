@@ -91,8 +91,10 @@
             <div class="pop-up pop-up_avatar">
                 <form class="pop-up__form pop-up__form_avatar" name="form">
                     <h2 class="pop-up__title">Обновить аватар</h2>
-                    <input id="form-link-avatar" type="URL" class="pop-up__item pop-up__item-link pop-up__item-avatar" name="form-link"  placeholder="Ссылка на картинку" required>
-                    <span class="pop-up__error pop-up__error-avatar" id="form-link-error-avatar"></span>
+                    <fieldset class="pop-up__redactor">
+                        <input id="form-link-avatar" type="URL" class="pop-up__item pop-up__item-link" name="form-link-avatar"  placeholder="Ссылка на картинку" required>
+                        <span  class="pop-up__error" id="form-link-avatar-error"></span>
+                    </fieldset>
                     <button class="pop-up__button pop-up__button_avatar pop-up__button_disabled" type="submit" disabled>Создать</button>
                     <button type="button" class="pop-up__cross pop-up__cross_delete"><img  src="<%=require('./images/closeicon.svg')%>" alt="Крестик"></button>
                 </form>
