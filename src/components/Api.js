@@ -1,48 +1,32 @@
 export class Api{
-    constructor(token){
+    constructor(token, cardAddress, userInfoAddress){
         this._token = token;
+        this._cardAddress = cardAddress;
+        this._userInfoAddress = userInfoAddress;
     }
 
-    getCard(address){
-        return fetch(`${address}`, {
-        headers: {
-            authorization: `${this._token}`
-        }})
-        .then(res => {
-            if(res.ok){
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-        }) 
-        .then(res =>{
-            return res;
-        })  
-        .catch((err) => {
-            console.log(err);
-        })
-    }
-
-    getInfo(address){
-        return fetch(`${address}`, {
+    getCard(){
+        return fetch(`${this._cardAddress}`, {
             headers: {
                 authorization: `${this._token}`
             }})
             .then(res => {
-                if(res.ok){
-                    return res.json()
-                }
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .then(res =>{
-                return res;
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+                return this._testAndReturn(res);
+        })
     }
 
-    editingInfo(address, name, about){
-        fetch(`${address}`, {
+    getInfo(){
+        return fetch(`${this._userInfoAddress}`, {
+            headers: {
+                authorization: `${this._token}`
+            }})
+            .then(res =>{
+                return this._testAndReturn(res);
+        })
+    }
+
+    editingInfo(name, about){
+        return fetch(`${this._userInfoAddress}`, {
             method: 'PATCH',
             headers: {
                 authorization: `${this._token}`,
@@ -52,11 +36,14 @@ export class Api{
                 name: `${name}`,
                 about: `${about}`
               })
-        });
+        })
+        .then(res =>{
+            return this._testAndReturn(res);
+        })
     }
 
-    editingAvatar(address, link){
-        fetch(`${address}/avatar`, {
+    editingAvatar(link){
+        return fetch(`${this._userInfoAddress}/avatar`, {
             method: 'PATCH',
             headers: {
                 authorization: `${this._token}`,
@@ -65,11 +52,14 @@ export class Api{
             body: JSON.stringify({
                 avatar: `${link}`
               })
+        })
+        .then(res =>{
+            return this._testAndReturn(res);
         });
     }
 
-    postCard(address, name, link){
-        fetch(`${address}`, {
+    postCard(name, link){
+        return fetch(`${this._cardAddress}`, {
             method: 'POST',
             headers: {
                 authorization: `${this._token}`,
@@ -78,18 +68,55 @@ export class Api{
             body: JSON.stringify({
                 name: `${name}`,
                 link: `${link}`
-              })
-        });
+            })
+        })
+        .then(res =>{
+            return this._testAndReturn(res);
+        })
     }
 
-    deleteCard(address, id){
-        fetch(`${address}/${id}`, {
+    deleteCard(id){
+        return fetch(`${this._cardAddress}/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `${this._token}`
             },
-        });
+        })
+        .then(res =>{
+            return this._testAndReturn(res);
+        })
     }
 
+    setLike(id){
+        return fetch(`${this._cardAddress}/likes/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `${this._token}`
+            },
+        })
+        .then(res =>{
+            return this._testAndReturn(res);
+        })
+    }
 
+    deleteLike(id){
+        return fetch(`${this._cardAddress}/likes/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `${this._token}`
+            },
+        })
+        .then(res =>{
+            return this._testAndReturn(res);
+        })
+    }
+
+    _testAndReturn(res){
+        if(res.ok){
+            return res.json()
+        }
+        else{
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+    }
 }
