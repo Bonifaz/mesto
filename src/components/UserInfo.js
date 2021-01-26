@@ -9,17 +9,20 @@ export class UserInfo{
     getUserInfo(){
         const userInfoObj = {
             name: this._userName.textContent,
-            prof: this._userProf.textContent
+            prof: this._userProf.textContent,
+            avatar: this._userAvatar.src
         }
         return userInfoObj;
     }
 
     setUserInfo(infoUser){
-        this._userName.textContent = infoUser[0]; 
-        this._userProf.textContent = infoUser[1];
+        this._userName.textContent = infoUser.name; 
+        this._userProf.textContent = infoUser.subtitle;
     }
 
     setAvatar(link){
-        this._userAvatar.src=link;
+        if(link){
+            this._userAvatar.src=link;
+        }
     }
 }

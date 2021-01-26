@@ -11,7 +11,7 @@ export class Api{
                 authorization: `${this._token}`
             }})
             .then(res => {
-                return this._testAndReturn(res);
+                return this._checkResponse(res);
         })
     }
 
@@ -21,7 +21,7 @@ export class Api{
                 authorization: `${this._token}`
             }})
             .then(res =>{
-                return this._testAndReturn(res);
+                return this._checkResponse(res);
         })
     }
 
@@ -38,7 +38,7 @@ export class Api{
               })
         })
         .then(res =>{
-            return this._testAndReturn(res);
+            return this._checkResponse(res);
         })
     }
 
@@ -54,7 +54,7 @@ export class Api{
               })
         })
         .then(res =>{
-            return this._testAndReturn(res);
+            return this._checkResponse(res);
         });
     }
 
@@ -71,7 +71,7 @@ export class Api{
             })
         })
         .then(res =>{
-            return this._testAndReturn(res);
+            return this._checkResponse(res);
         })
     }
 
@@ -83,7 +83,7 @@ export class Api{
             },
         })
         .then(res =>{
-            return this._testAndReturn(res);
+            return this._checkResponse(res);
         })
     }
 
@@ -95,7 +95,7 @@ export class Api{
             },
         })
         .then(res =>{
-            return this._testAndReturn(res);
+            return this._checkResponse(res);
         })
     }
 
@@ -107,11 +107,11 @@ export class Api{
             },
         })
         .then(res =>{
-            return this._testAndReturn(res);
+            return this._checkResponse(res);
         })
     }
 
-    _testAndReturn(res){
+    _checkResponse(res){
         if(res.ok){
             return res.json()
         }

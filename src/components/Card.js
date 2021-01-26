@@ -1,5 +1,5 @@
 export class Card {
-    constructor(item, templateSelector, countLike, openImageHandler, openDeleteHandler, setLike, deleteLike){
+    constructor(item, templateSelector, countLike, openImageHandler, openDeleteHandler, setLike, deleteLike, userName, userId){
         this._item = item;
         this._templateSelector = templateSelector;
         this.openImageHandler = openImageHandler;
@@ -13,6 +13,8 @@ export class Card {
         this._buttonHeart = this._templateCopy.querySelector('.element__heart');
         this._setLike = setLike;
         this._deleteLike = deleteLike;
+        this._userName = userName;
+        this._userId = userId;
     }
 
     _getTemplate(){
@@ -22,6 +24,14 @@ export class Card {
     initCard(){
         this._imageCard.src = this._item.link; 
         this._titleCard.textContent = this._item.name;
+        this._item.likes.forEach(likeInfo =>{
+            if(likeInfo.name === this._userName){
+                this._buttonHeart.classList.add('element__heart_active');
+            }
+        });
+        if(this._item.owner._id != `${this._userId}`){
+            this._buttonDeleteCard.remove();
+        }
         this._setEventListeners();
         return this._templateCopy;
     }

@@ -7,7 +7,6 @@
     </head>
     <body class="body">
         <div class="page">
-
             <header class="header">
                 <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
             </header>
@@ -48,9 +47,9 @@
             <form class="pop-up__form pop-up__form_edit" name="form" novalidate>
                 <h2 class="pop-up__title">Редактировать профиль</h2>
                 <fieldset class="pop-up__redactor">
-                    <input id="form-name" type="text" class="pop-up__item pop-up__item_name" placeholder="Имя" name="form-name" minlength="2" maxlength="40" required>
+                    <input id="form-name" type="text" class="pop-up__item pop-up__item_name" placeholder="Имя" name="name" minlength="2" maxlength="40" required>
                     <span  class="pop-up__error" id="form-name-error"></span>
-                    <input id="form-subtitle" type="text" class="pop-up__item pop-up__item_subtitle" placeholder="Вид деятельности" name="form-subtitle" minlength="2" maxlength="200" required>
+                    <input id="form-subtitle" type="text" class="pop-up__item pop-up__item_subtitle" placeholder="Вид деятельности" name="subtitle" minlength="2" maxlength="200" required>
                     <span  class="pop-up__error" id="form-subtitle-error"></span>
                 </fieldset>
                 <button class="pop-up__button pop-up__button_edit" type="submit">Сохранить</button>
@@ -62,9 +61,9 @@
                 <form class="pop-up__form pop-up__form_add" name="form">
                     <h2 class="pop-up__title">Новое место</h2>
                     <fieldset class="pop-up__redactor">
-                        <input id="form-place" type="text" class="pop-up__item pop-up__item-place" name="form-place" minlength="2" maxlength="20" placeholder="Название" required>
+                        <input id="form-place" type="text" class="pop-up__item pop-up__item-place" name="place" minlength="2" maxlength="20" placeholder="Название" required>
                         <span   class="pop-up__error" id="form-place-error"></span>
-                        <input id="form-link" type="URL" class="pop-up__item pop-up__item-link" name="form-link"  placeholder="Ссылка на картинку" required>
+                        <input id="form-link" type="URL" class="pop-up__item pop-up__item-link" name="link"  placeholder="Ссылка на картинку" required>
                         <span   class="pop-up__error" id="form-link-error"></span>
                     </fieldset>
                     <button class="pop-up__button pop-up__button_add pop-up__button_disabled" type="submit" disabled>Создать</button>
@@ -92,7 +91,7 @@
                 <form class="pop-up__form pop-up__form_avatar" name="form">
                     <h2 class="pop-up__title">Обновить аватар</h2>
                     <fieldset class="pop-up__redactor">
-                        <input id="form-link-avatar" type="URL" class="pop-up__item pop-up__item-link" name="form-link-avatar"  placeholder="Ссылка на картинку" required>
+                        <input id="form-link-avatar" type="URL" class="pop-up__item pop-up__item-link" name="linkAvatar"  placeholder="Ссылка на картинку" required>
                         <span  class="pop-up__error" id="form-link-avatar-error"></span>
                     </fieldset>
                     <button class="pop-up__button pop-up__button_avatar pop-up__button_disabled" type="submit" disabled>Сохранить</button>

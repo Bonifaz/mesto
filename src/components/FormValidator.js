@@ -31,7 +31,7 @@ export class FormValidator {
 
     _validForms(inputsObjects, input){
         const retValue = this._allInputsValid(inputsObjects);
-                this._toggleClassSubmitButton(retValue);
+                this.toggleClassSubmitButton(retValue);
                 if (input.validity.valid) {
                     this._hideInputError(input);
                 } else {
@@ -44,8 +44,14 @@ export class FormValidator {
         const inputObjectsError = this._form.querySelector(`#${input.id}-error`);
         inputObjectsError.classList.remove(this._validationSettings.errorClass);
         inputObjectsError.textContent = '';
-    }  
+    }
     
+    hideAllInputsError(){
+        this._inputs().forEach(item =>{
+            this._hideInputError(item);
+        })
+    }
+
     
     _showInputError(input){
         input.classList.add(this._validationSettings.inputErrorClass);
@@ -56,7 +62,7 @@ export class FormValidator {
 
     
 
-    _toggleClassSubmitButton(isValidForm){
+    toggleClassSubmitButton(isValidForm){
         const buttonValid = this._form.querySelector(this._validationSettings.submitButtonSelector);
         if(isValidForm){
             buttonValid.classList.remove(this._validationSettings.inactiveButtonClass);
