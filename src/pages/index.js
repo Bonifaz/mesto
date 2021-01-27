@@ -71,9 +71,7 @@ const userInfo = new UserInfo(userInfoSelectors);
 
 const cardList = new Section({
     renderer: (item, containForCards, name, id) => {
-        const card = createCard(item, templateSelector, item.likes.length, name, id);
-        card.querySelector('.element').setAttribute('ID', `${item._id}`);
-        card.querySelector(counterLike).textContent = item.likes.length;
+        const card = createCard(item, templateSelector, item.likes.length, name, id, item._id);
         containForCards.append(card);
     }, 
 },elements);
@@ -122,7 +120,7 @@ function saveFormAvatar(evt, link){
             console.log(err);
         })
         .finally(() => {
-            popupAvatarSubmitButton.textContent = "Сохранить";
+            renderLoading(popupAvatarSubmitButton);
         });
 }
 
@@ -133,7 +131,6 @@ function saveFormHandler(evt, infoUser){
     renderLoading(buttonSave);
     api.editingInfo(infoUser.name, infoUser.subtitle)
         .then(res =>{
-            
             userInfo.setUserInfo(infoUser);
             popupWithFormEdit.close();
         })
@@ -141,12 +138,12 @@ function saveFormHandler(evt, infoUser){
             console.log(err);
         })
         .finally(()=>{
-            buttonSave.textContent = "Сохранить";
+            renderLoading(buttonSave)
         })
 }
 
-function createCard(item, templateSelector, countLike, name, id){
-    const addCardDefault = new Card(item, templateSelector, countLike, openImageHandler, openDeleteHandler, setLikeHandler, deleteLikeHandler, name, id);
+function createCard(item, templateSelector, countLike, name, id, cardId){
+    const addCardDefault = new Card(item, templateSelector, countLike, openImageHandler, openDeleteHandler, setLikeHandler, deleteLikeHandler, name, id, cardId);
     return addCardDefault.initCard();
 }
 
@@ -163,9 +160,7 @@ function saveFormAddHandler(evt, infoPic){
     item.link = infoPic.link;
     api.postCard(item.name, item.link)
         .then(res =>{
-            const card = createCard(res, templateSelector, res.likes.length, res.owner.name, res.owner._id);
-            card.querySelector('.element').setAttribute('ID', `${res._id}`);
-            card.querySelector(counterLike).textContent = res.likes.length;
+            const card = createCard(res, templateSelector, res.likes.length, res.owner.name, res.owner._id, res._id);
             cardList.addItem(card, elements);
             popupWithFormAdd.close()
         })
@@ -173,7 +168,7 @@ function saveFormAddHandler(evt, infoPic){
             console.log(err);
         })
         .finally(() =>{
-            popupAddSubmitButton.textContent = "Создать"
+            renderLoading(popupAddSubmitButton);;
             popupAddButtonDisabled();
         })
     
@@ -194,7 +189,7 @@ function openDeleteHandler(target){
                 console.log(err);
             })
             .finally(()=>{
-                confirmDeleteButton.textContent = "Да";
+                renderLoading(confirmDeleteButton);
             });
     });
 }
